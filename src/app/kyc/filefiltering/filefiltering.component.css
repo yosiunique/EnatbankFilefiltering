@@ -1,0 +1,171 @@
+
+  
+  body {
+    background-color: #f4f7fc;
+    color: #333;
+    font-size: 14px;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  /* Header */
+  mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: #3f51b5; /* Material Primary Color */
+    color: white;
+  }
+  
+  h1 {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  /* Date Filter Section */
+  .date-filter {
+    margin: 20px 0;
+  }
+  
+  mat-form-field {
+    width: 100%;
+    max-width: 300px;
+ text-align: center;
+  }
+  
+  /* Table */
+  table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  table mat-header-row, table mat-row {
+    height: 50px;
+  }
+  
+  th.mat-header-cell {
+    font-weight: 600;
+    background-color: #f5f5f5;
+    color: #444;
+  }
+  
+  td.mat-cell {
+    font-size: 14px;
+    padding: 10px;
+    color: #666;
+  }
+  
+  .mat-elevation-z8 {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+  }
+  
+  .mat-header-cell {
+    text-align: left;
+    padding-left: 10px;
+  }
+  
+  .mat-cell a {
+    display: inline-block;
+    margin-right: 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 500;
+  
+  }
+  
+   .mat-button {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .mat-icon {
+    margin-right: 5px;
+  }
+  a{
+    text-decoration: none;
+  }
+  
+  .mat-button.view {
+    background-color: #3f51b5;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .mat-button.download {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .mat-button:hover {
+    opacity: 0.9;
+  } 
+  
+  .mat-paginator {
+    margin-top: 20px;
+  }
+  
+  /* Footer */
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: #888;
+    margin-top: 40px;
+  }
+  
+  footer p {
+    margin: 10px 0;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .date-filter {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    table {
+      font-size: 12px;
+    }
+  
+    mat-toolbar {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 20px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 10px;
+    }
+  
+    table mat-header-row, table mat-row {
+      height: 40px;
+    }
+  
+    .mat-button {
+      padding: 4px 8px;
+    }
+  
+    footer {
+      font-size: 10px;
+    }
+  }
+  
