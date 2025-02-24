@@ -113,7 +113,7 @@ export class FilefilteringComponent  implements OnInit{
 
 
   public onLogOut() {
-    alert('hi')
+
     this.oauthService.logOut();
   }
 
