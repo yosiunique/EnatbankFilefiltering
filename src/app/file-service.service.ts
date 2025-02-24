@@ -13,14 +13,26 @@ export class FileServiceService {
   private URL = 'http://localhost:8080/filter-file';
   constructor(private http:HttpClient) { }
 
-
+/****
+ * 
+ * fetching file using start and end date
+ * 
+ */
   fileList(createdDate:CreatedDate):Observable<FileDetails[]> {
     
     return this.http.post<FileDetails[]>(`${this.URL}/search-by-created-date`,createdDate);
   }
  
-  getTest():Observable<string>{
 
-    return this.http.get<string>(`${this.URL}/test`);
-  }
+
+ /****
+  * view file
+  */
+ getFile(fileName: string) {
+ // Encode the filename
+  const fileUrl = `http://localhost:8080/filter-file/view/${fileName}`;
+  return this.http.get(fileUrl, { responseType: 'blob' });
+}
+
+
 }

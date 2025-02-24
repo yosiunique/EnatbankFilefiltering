@@ -14,6 +14,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 
@@ -46,6 +47,8 @@ export class FilefilteringComponent  implements OnInit{
    * pagination of pagesize exlanation
    * 
   */
+  fileUrl:string|null=null;
+  fileName:string|null=null;
   test='';
   isDarkMode:boolean=false;
   isVisible:boolean=false;
@@ -55,7 +58,7 @@ export class FilefilteringComponent  implements OnInit{
   dataSource = new MatTableDataSource<FileDetails>();
   isVisbleTable = true;
 
-  constructor(private fileService: FileServiceService ,private oauthService:OAuthService) { 
+  constructor(private http:HttpClient,private fileService: FileServiceService ,private oauthService:OAuthService) { 
 
   }
   hideAndDispalyTable() {
@@ -123,6 +126,36 @@ document.body.classList.toggle('dark-mode',this.isDarkMode);
   }
   
 
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
 
 }
 
