@@ -3,22 +3,41 @@
     <!-- Header with Toolbar -->
     <mat-toolbar color="primary">
       <h1>
-        <img src="logo.png" alt="Logo" class="logo"> KYC Files Searching
-      </h1>
+        <img src="logo.png" alt="Logo"  class="logo"> KYC Files Searching
+<div class="profile-container" (mouseenter)="menuOn()" (mouseleave)="menuOf()">
+ 
+<img src="profile.png" alt="not found">
+<div class="user-info">
+  YG|HeadOffice
+  </div>
+<br>
+<ul class="menu" [ngClass]="{'show':isVisible}">
+  <li><button><mat-icon>settings</mat-icon>setting</button></li>
+  <li><button (click)="toggle()"><mat-icon>{{ isDarkMode ? 'wb_sunny' : 'nights_stay' }}</mat-icon>dark mode</button></li>
+  <li><button (click)="onLogOut()"><mat-icon>logout</mat-icon>logout</button></li>
+</ul>
+
+</div>
+
+
+
+                </h1>
+
+
     </mat-toolbar>
   
     <!-- Date Filters -->
     <div class="date-filter">
       <mat-form-field appearance="outline">
         <mat-label>Start Date</mat-label>
-        <input matInput [matDatepicker]="startPicker" [(ngModel)]="createdDate.startDate"  (input)="filterFiles()">
-        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
-        <mat-datepicker #startPicker></mat-datepicker>
+        <input matInput [matDatepicker]="startPicker" [(ngModel)]="createdDate.startDate"  (input)="filterFiles()" (dateChange)="filterFiles()">
+        <mat-datepicker-toggle  matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker  #startPicker></mat-datepicker>
       </mat-form-field>
   
       <mat-form-field appearance="outline">
         <mat-label>End Date</mat-label>
-        <input matInput [matDatepicker]="endPicker" [(ngModel)]="createdDate.endDate" (input)="filterFiles()">
+        <input matInput [matDatepicker]="endPicker" [(ngModel)]="createdDate.endDate" (input)="filterFiles()" (dateChange)="filterFiles()">
         <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
         <mat-datepicker #endPicker></mat-datepicker>
       </mat-form-field>
@@ -69,6 +88,8 @@
       [pageSizeOptions]="[5, 10, 15,20]" (page)="changePage($event)" showFirstLastButtons>
     </mat-paginator>
   
+
+    <button (click)="onLogOut()">onLogOut.............</button>
     <!-- Footer -->
     <footer>
       <p>Enat Bank Sc. ©2025</p>

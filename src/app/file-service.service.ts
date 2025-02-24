@@ -15,7 +15,12 @@ export class FileServiceService {
 
 
   fileList(createdDate:CreatedDate):Observable<FileDetails[]> {
+    
     return this.http.post<FileDetails[]>(`${this.URL}/search-by-created-date`,createdDate);
   }
  
+  getTest():Observable<string>{
+
+    return this.http.get<string>(`${this.URL}/test`);
+  }
 }
