@@ -16,7 +16,7 @@ export const appConfig: ApplicationConfig = {
       provide: HTTP_INTERCEPTORS,
       useClass: XhrInterceptorService,
       multi: true,
-    },
+    }, provideAnimationsAsync(),
   ],
 
  
