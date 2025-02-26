@@ -17,7 +17,6 @@
     
           <!-- Dropdown Menu -->
           <ul class="menu" [ngClass]="{'show': isVisible}">
-            <li><button mat-button>{{branchName}}</button></li>
             <li><button mat-button (click)="toggle()">
               <mat-icon>{{ isDarkMode ? 'wb_sunny' : 'nights_stay' }}</mat-icon> Dark Mode</button>
             </li>
