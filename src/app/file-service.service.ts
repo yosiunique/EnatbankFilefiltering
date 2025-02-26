@@ -34,5 +34,14 @@ export class FileServiceService {
   return this.http.get(fileUrl, { responseType: 'blob' });
 }
 
+viewFile(fileName:string){
+
+    const url = `http://localhost:8080/filter-file/view/${fileName}`;
+    return this.http.get(url, {
+      responseType: 'blob' 
+    });
+  }
+
+
 
 }

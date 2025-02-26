@@ -17,73 +17,12 @@ import { ProfileComponent } from "./profile/profile/profile.component";
 })
 export class AppComponent {
   title = 'fileserching';
-  employee:any;
-  roles:any;
-  isLoading:boolean=false;
-constructor(private outhService:OAuthService,private router:Router,private authService:AuthService,private employeeService:EmployeeService) { 
-  this.router.events.subscribe((event) => {
-      const routerEvent = event as RouterEvent;
-      if (routerEvent instanceof NavigationStart) {
-        this.isLoading = true;
-      }
-
-      if (routerEvent instanceof NavigationEnd) {
-        this.isLoading = false;
-      }
-    });
-
-    this.init();
-  }
-
-  public login() {
-      this.outhService.initImplicitFlow();
-    }
   
-    public get userName() {
-      const cliams = this.outhService.getIdentityClaims();
-      if (!cliams) {
-        return null;
-      }
-  
-      return (cliams as any).given_name;
-    }
-  
-    public get fullName() {
-      return (<any>this.authService.getTokenDetails()).name;
-    }
-
-  /// security
-  public init() {
-    this.outhService.configure(authConfig);
-   this.outhService.tokenValidationHandler = new JwksValidationHandler();
-    this.outhService.loadDiscoveryDocumentAndLogin().then(() => {
-      this.getRoles();
-      this.getEmployee();
-    });
-    this.outhService.setStorage(localStorage);
-    this.outhService.setupAutomaticSilentRefresh();
-  }
-
-
-  getRoles() {
-    this.roles = this.authService.getUserRoles();
+constructor() { 
   
   }
 
-
-
-  getEmployee() {
-    this.employeeService
-      .getEmployeeByemployeeId()
-      .subscribe((data:any) => {
-        
-        this.employee = data;
-        console.log(this.employee)
-        
-
- });
-  } 
-
+  
 
 
 
