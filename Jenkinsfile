@@ -18,31 +18,13 @@ stages{
          }
         steps{
            script{
-               docker.build("10.1.12.73:5000/enat-back-sira-front-end:${TAG}","--build-arg config=staging .")
-           }
-        }
-    }
- stage("Build Docker for mtesfa-test"){
-         when{
-             branch "reve-mtesfa"
-         }
-        steps{
-           script{
-               docker.build("10.1.12.73:5000/enat-back-sira-front-end:${TAG}","--build-arg config=staging .")
+               docker.build("10.1.12.73:5000/kyc-file-filter-front-end:${TAG}","--build-arg config=staging .")
            }
         }
     }
 
-    stage("Build Docker for feature/guzo-payment"){
-         when{
-             branch "feature/guzo-payment"
-         }
-        steps{
-           script{
-               docker.build("10.1.12.73:5000/enat-back-sira-front-end:${TAG}","--build-arg config=staging .")
-           }
-        }
-    }
+
+  
 
       stage("Build Docker for Production"){
          when{
@@ -50,7 +32,7 @@ stages{
          }
         steps{
            script{
-               docker.build("10.1.12.73:5000/enat-back-sira-front-end:${TAG}","--build-arg config=production .")
+               docker.build("10.1.12.73:5000/kyc-file-filter-front-end:${TAG}","--build-arg config=production .")
            }
         }
     }
@@ -58,8 +40,8 @@ stages{
         steps{
            script{
                docker.withRegistry("http://10.1.12.73:5000"){
-                   docker.image("10.1.12.73:5000/enat-back-sira-front-end:${TAG}").push()
-                   docker.image("10.1.12.73:5000/enat-back-sira-front-end:${TAG}").push("latest")
+                   docker.image("10.1.12.73:5000/kyc-file-filter-front-end:${TAG}").push()
+                   docker.image("10.1.12.73:5000/kyc-file-filter-front-end:${TAG}").push("latest")
                }
            }
         }
@@ -71,34 +53,16 @@ stages{
         }
                  steps{
                     sshagent(['ebdev']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l  ebdevuat 10.1.22.72      "docker stop enat-back-sira-web-app | true;     docker rm enat-back-sira-web-app | true;     docker run -p 81:80  -d --name enat-back-sira-web-app 10.1.12.73:5000/enat-back-sira-front-end:${TAG}"'
+                    sh 'ssh -o StrictHostKeyChecking=no -l  ebdevuat 10.1.22.72      "docker stop kyc-file-filter-web-app | true;     docker rm kyc-file-filter-web-app | true;     docker run -p 5004:80  -d --name kyc-file-filter-web-app 10.1.12.73:5000/kyc-file-filter-front-end:${TAG}"'
                 }
 
 
         }
     }
 
-       stage("Deliver for reve-mtesfa"){
-        when{
-            branch "reve-mtesfa"
-        }
-                 steps{
-                    sshagent(['ebdev']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l  ebdevuat 10.1.22.72      "docker stop enat-back-sira-web-app-mt | true;     docker rm enat-back-sira-web-app-mt | true;     docker run -p 82:80  -d --name enat-back-sira-web-app-mt 10.1.12.73:5000/enat-back-sira-front-end:${TAG}"'
-                }
-        }
-    }
+       
 
-    stage("Deliver for feature/guzo-payment"){
-        when{
-            branch "for feature/guzo-payment"
-        }
-                 steps{
-                    sshagent(['ebdev']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l  ebdevuat 10.1.22.72      "docker stop enat-back-sira-web-app | true;     docker rm enat-back-sira-web-app | true;     docker run -p 81:80  -d --name enat-back-sira-web-app 10.1.12.73:5000/enat-back-sira-front-end:${TAG}"'
-                }
-        }
-    }
+   
 
 
       stage("Deploy for production"){
@@ -107,7 +71,7 @@ stages{
         }
            steps{
                     sshagent(['enat-remedy-production']) {
-                    sh 'ssh -o StrictHostKeyChecking=no -l  administrator 10.1.12.70      "docker stop enat-back-sira-web-app | true;     docker rm enat-back-sira-web-app | true;     docker run -p 81:80  -d --name enat-back-sira-web-app 10.1.12.73:5000/enat-back-sira-front-end:${TAG}"'
+                   sh 'ssh -o StrictHostKeyChecking=no -l  ebdevuat 10.1.12.70      "docker stop kyc-file-filter-web-app | true;     docker rm kyc-file-filter-web-app | true;     docker run -p 5004:80  -d --name kyc-file-filter-web-app 10.1.12.73:5000/kyc-file-filter-front-end:${TAG}"'
                 }
             }
     }

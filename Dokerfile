@@ -10,4 +10,4 @@ COPY . .
 RUN ng build --configuration ${config}
 FROM nginx
 COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /usr/src/app/dist/enat-bank-sira /usr/share/nginx/html
+COPY --from=build /usr/src/app/dist/fileserching /usr/share/nginx/html
